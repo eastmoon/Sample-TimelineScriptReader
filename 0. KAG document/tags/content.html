@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0068)http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/Tags.html#autowc -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-TW" lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+	<title>內容操作</title>
+	<meta name="author" content="eastmoon">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<link href="../css/browser.css" type="text/css" rel="stylesheet" title="吉里吉里瀏覽器顯示設定檔">
+	<link href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/index.html" target="_top" rel="Start" title="吉里吉里首頁">
+</head>
+<body>
+
+<h1><a name="tags" id="tags">內容操作</a></h1>
+<div class="para">
+	KAG ( Krikri Adventure Game )標籤文件說明。<br />
+	本專案為KAG文件轉譯，並以此解析KAG，並重建功能於Unity。<br />
+	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/index.html">吉里吉里首頁</a><br />
+	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/Tags.html">KAG標籤列表原文</a><br />
+</div>
+
+<h1><a name="delay" id="delay">delay (文字顯示速度設定)</a></h1>
+<div class="para">
+	<div class="taggenre">內容操作</div>
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">speed</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">"nowait" | "user" | 數值(毫秒、ms)</td>
+			<td class="tagattribdesc">
+			"nowait"，延遲速度為0，每個文字皆不停頓的逐一顯示。<br />
+			<delline>"user"，延遲速度依據[System|文字速度]所設定的預設速度 ( 設定來源 ? )。</delline><br />
+			數值，延遲速度依據設定之毫秒(ms)時間逐一顯示文字。<br />
+			文字顯速度度設定後，其後的所有內容皆受此影響，直到下次改變。
+			</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		指定文字顯示時，字符間延遲的速度。<br />
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[delay speed=1000]<br />
+	xyz<br />
+	<span class="weak">顯示結果：</span><br />
+	<ol>
+		<li>x
+		<li>[延遲1秒]
+		<li>xy
+		<li>[延遲1秒]
+		<li>xyz
+	</ol>
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+</body>
+</html>

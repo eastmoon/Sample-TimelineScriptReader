@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0068)http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/Tags.html#autowc -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-TW" lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+	<title>系統操作</title>
+	<meta name="author" content="eastmoon">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<link href="../css/browser.css" type="text/css" rel="stylesheet" title="吉里吉里瀏覽器顯示設定檔">
+	<link href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/index.html" target="_top" rel="Start" title="吉里吉里首頁">
+</head>
+<body>
+
+<h1><a name="tags" id="tags">系統操作標籤</a></h1>
+<div class="para">
+	KAG ( Krikri Adventure Game )標籤文件說明。<br />
+	本專案為KAG文件轉譯，並以此解析KAG，並重建功能於Unity。<br />
+	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/index.html">吉里吉里首頁</a><br />
+	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/Tags.html">KAG標籤列表原文</a><br />
+</div>
+
+<h1><a name="autowc" id="autowc">autowc (自動調整字符顯示速度，時間長度由文字數量決定)</a></h1>
+<div class="para">
+	<div class="taggenre">系統操作</div>
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">enabled</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">true(default) | false</td>
+			<td class="tagattribdesc">使否啟用這像功能。</td></tr>
+
+			<tr><td class="tagattribname">ch</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">目標字符</td>
+			<td class="tagattribdesc">自動調整等待時間的指定字符。</td></tr>
+
+			<tr><td class="tagattribname">time</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">等待時間(文字數量)</td>
+			<td class="tagattribdesc">指定字符各自的等待時間，其等待時間長度由文字數量乘上單一文字延遲時間(<a href="#delay">delay</a>)。</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		指定特定字符的文字延遲時間。<br />
+		當文字顯示到ch屬性內所指定的字符，其文字延遲時間即為time內所指定的對應時間。<br />
+		<newcomment>(20150311 註解) 原則上此功能指定字符的延遲時間會覆蓋<a href="#delay">delay</a>的設定，所以當『跳過』功能實行時，其狀況與一般文字相同。</newcomment><br />
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[autowc enabled=true ch="、。・" time="3,5,3"]<br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="ch" id="ch">ch (顯示字符)</a></h1>
+<div class="para">
+	<div class="taggenre">系統操作</div>
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">text</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">文字</td>
+			<td class="tagattribdesc">
+			顯示於畫面上的文字。<br />
+			可以填入複數字符，但不會自動段行，且指會顯示第一個字符。<br />
+			</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		顯示字符於<a href="#current">current</a>內容層內。<br />
+		KAG內，通常文字為一個字一個字分解並處理。<br />
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[ch text="ABCDE"]<br />
+	<span class="weak">顯示結果：</span><br />
+	A
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="clickskip" id="clickskip">clickskip (允許啟用『跳過』)</a></h1>
+<div class="para">
+	<div class="taggenre">系統操作</div>
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">enabled</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">true(Default) | false</td>
+			<td class="tagattribdesc">
+			跳過(Click Skip，點擊跳過)功能若啟動設為true，不啟動設為false。
+			</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		若在文字顯示途中點擊畫面時，可跳過文字顯示動畫並完整顯示內容。<br />
+	</div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="nextskip" id="nextskip">nextskip (允許啟用『移動到下個選項』)</a></h1>
+<div class="para">
+	<div class="taggenre">系統操作</div>
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">enabled</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">true(Default) | false</td>
+			<td class="tagattribdesc">
+			『移動到下個選項』功能若啟動設為true，不啟動設為false。
+			</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		使用者使用『移動到下個選項』功能時，系統是否運行此像運作。<br />
+		(20150311 註解) 因為移動為快進功能，因此當啟用此功能，同時也啟用『跳過』。
+	</div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="wait" id="wait">wait (指定一個等待時間)</a></h1>
+<div class="para">
+	<div class="taggenre">系統操作</div>
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">time</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">數值(毫秒、ms)</td>
+			<td class="tagattribdesc">
+			依據設定的毫秒(ms)時間等待。
+			</td></tr>
+
+			<tr><td class="tagattribname">mode</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">"normal"(default) | "until"</td>
+			<td class="tagattribdesc">
+			指定等待的方式。<br />
+			"normal"，依據time所指定的時間等待。<br />
+			<delline>"until"</delline>
+			</td></tr>
+
+			<tr><td class="tagattribname">canskip</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">true(default) | false</td>
+			<td class="tagattribdesc">
+			當滑鼠、鍵盤敲下，這標籤是否接受『跳過』功能；若接受則為true、不接受則為false。
+			</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		等待一段文字數量長度的延遲時間。<br />
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[wait speed=5000 canskip=true]<br />
+	<span class="weak">結果：</span><br />
+	[等待5秒]
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="waitclick" id="waitclick">waitclick (點擊等待)</a></h1>
+<div class="para">
+	<div class="taggenre">系統操作</div>
+	<div class="tagremarks">
+		點擊等待。<br />
+		不同於<a href="#l">l</a>標籤、<a href="#p">p</a>標籤，不接受『跳過』功能，會顯示等待圖示(符號)。
+	</div>
+	<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+
+<h1><a name="wc" id="wc">wc (指定一個等待時間，時間長度由文字數量決定)</a></h1>
+<div class="para">
+	<div class="taggenre">系統操作</div>
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">time</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">數值(文字數量)</td>
+			<td class="tagattribdesc">
+			等待時間長度由設定之數值乘上單一文字延遲時間。(<a href="#delay">delay</a>)
+			</td></tr>
+
+			<tr><td class="tagattribname"><newcomment>canskip</newcomment></td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">true(default) | false</td>
+			<td class="tagattribdesc">
+			<newcomment>
+			(20130311 註解)未確保標籤功能統一，新增此屬性。<br />
+			當滑鼠、鍵盤敲下，這標籤是否接受『跳過』功能；若接受則為true、不接受則為false。
+			</newcomment>
+			</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		等待一段文字數量長度的延遲時間。<br />
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[delay speed=1000]
+	[wc time=5]<br />
+	<span class="weak">結果：</span><br />
+	[等待5秒]
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+</body>
+</html>
