@@ -17,6 +17,7 @@
 	本專案為KAG文件轉譯，並以此解析KAG，並重建功能於Unity。<br />
 	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/index.html">吉里吉里首頁</a><br />
 	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/Tags.html">KAG標籤列表原文</a><br />
+	<a href="http://kibitz2550.blogspot.tw/2011/06/blog-post.html">KAG標籤列表，中文介紹：NOCBOL ~本店營業中~</a><br />
 </div>
 <h1><a name="tag_overview" id="tag_overview">標籤格式說明</a></h1>
 <div class="para">
@@ -48,15 +49,15 @@
 	屬性值：<br />
 	<ol>
 	<li>數值：『屬性名=1』，使用半形英數符號
-	<ul><li>『屬性名="1"』 == 『屬性名=1』，若該屬性指可讀入數值，則不論是否夾帶半形符號""皆會轉為數值。</ul>
+	<ul><li>『屬性名="1"』 == 『屬性名=1』，若該屬性指可讀入數值，則不論是否夾帶半形符號""皆會轉為數值</ul>
 	<code class="bq">
 		<span class="weak">以下句型同意</span><br />
 		[trans time=200]<br />
 		[trans time="200"]<br />
 	</code>
-	<li>文字：『屬性名="XXXX"』，使用半形符號""夾住文字串
+	<li>字串：『屬性名="XXXX YYYY"』，使用半形符號""夾住文字串且可擁有空白
 	<code class="bq">
-		[font face="xxxx"]<br />
+		[font face="xxxx yyyy"]<br />
 	</code>
 	<li>布林：『屬性名=true|false』，使用半形英數符號撰寫true或false
 	<code class="bq">
@@ -64,16 +65,24 @@
 	</code>
 	<li>變數：『屬性名=&f.clearTime』，使用半形英數符號&開頭，並撰寫變數名稱f.clearTime
 	<code class="bq">
-		[eval exp="f.clearTime = 1000"]<br />
+		[eval exp="f.clearTime=1000"]<br />
 		[trans time=&f.clearTime]<br />
 	</code>
 	<li>省略屬性值，每個屬性都有預設屬性值，因此若要省略只要打上屬性名即表示使用屬性預設值
 		<ul><li>『屬性名』 == 『屬性名=1』，若該屬性預設為1</ul>
 	<code class="bq">
 		<span class="weak">以下句型同意</span><br />
-		[playbgm loop]<br />
+		[playbgm loop](loop default is true)<br />
 		[playbgm loop=true]<br />
 	</code>
+	<li>等號兩測不可為空白
+	<code class="bq">
+		<span class="weak">以下句型為指定錯誤，loop會指定為預設值</span><br />
+		[playbgm loop = true]<br />
+		[playbgm loop =true]<br />
+		[playbgm loop= true]<br />
+	</code>
+	<li>對稱標籤夾住內容屬性，使用標籤屬性，<a class="jump" href="./tags/macro.html#macro" target="_blank">巨集標籤：macro</a>
 	</ol>
 	</p>
 </div>
@@ -103,7 +112,7 @@
 	</p>
 </div>
 
-<h1><a name="tag_cond_attrib" id="tag_cond_attrib">註解說明</a></h1>
+<h1><a name="tag_comment" id="tag_comment">註解說明</a></h1>
 <div class="para">
 	<p>
 	格式：<br />
@@ -125,7 +134,7 @@
 </div>
 
 
-<h1><a name="tag_command" id="tag_command">書籤格式說明</a></h1>
+<h1><a name="tag_bookmark" id="tag_bookmark">書籤格式說明</a></h1>
 <div class="para">
 	<p>
 	格式：<br />
@@ -172,6 +181,23 @@
 
 <h1><a name="genre" id="genre" class="targanchor">標籤列表</a></h1>
 <p>
+對於舊有標籤內容因為多有矛盾與不適用，在此重新調整內文與排版。
+</p>
+<ul>
+	<li><a class="jump" href="./tags/system.html" target="_blank">系統操作</a>
+	<li><a class="jump" href="./tags/macro.html" target="_blank">巨集操作</a>
+	<li><a class="jump" href="./tags/index.html" target="_blank">索引操作</a>
+	<li><a class="jump" href="./tags/logic.html" target="_blank">變數、邏輯操作</a>
+	<li><a class="jump" href="./tags/layer.html" target="_blank">層級操作</a>
+	<li><a class="jump" href="./tags/content.html" target="_blank">內容操作</a>
+	<li><a class="jump" href="./tags/form.html" target="_blank">表單操作</a>
+	<li><a class="jump" href="./tags/media.html" target="_blank">音效、背景音樂、影片操作</a>
+	<li><a class="jump" href="./tags/history.html" target="_blank">歷史記錄操作</a>
+	<li><a class="jump" href="./tags/bookmark.html" target="_blank">書籤記錄操作</a>
+</ul>
+
+<h1><a name="genre" id="genre" class="targanchor">原始標籤列表</a></h1>
+<p>
 意義不明的<delline>操作標籤</delline>會已刪除線表示，不多加翻譯且不列入實作。<br />
 <newcomment>重新解釋邏輯與新增功能</newcomment>會以紅字表示，並以此為準進行實作。
 </p>
@@ -179,44 +205,45 @@
 	<div class="taggenrehead"><a class="jump" href="./tags/system.html">系統操作</a></div>
 	<table class="taglist" summary="系統操作 標籤列表">
 		<tbody>
+		<tr class="taglisttitle"><td>標籤名稱</td><td>標籤說明</td><td class="tagliststate">版本狀態</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="./tags/system.html#autowc">autowc</a></td>
-		<td>(自動調整字符顯示速度，時間長度由文字數量決定)</td></tr>
+		<td>(自動調整字符顯示速度，時間長度由文字數量決定)</td><td class="tagliststate">實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="./tags/system.html#clearsysvar">clearsysvar</a></td>
-		<td>(消除所有系統變數)</td></tr>
+		<td>(消除所有系統變數)</td><td>列入邏輯、變數操作，實做確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="./tags/system.html#clickskip">clickskip</a></td>
-		<td>(允許啟用『跳過』)</td></tr>
+		<td>(允許啟用『跳過』)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="./tags/system.html#close">close</a></td>
-		<td>(關閉視窗程式)</td></tr>
+		<td>(關閉視窗程式)</td><td>分類未確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="./tags/system.html#cursor">cursor</a></td>
-		<td>(變更滑鼠游標)</td></tr>
+		<td>(變更滑鼠游標)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="./tags/system.html#hidemessage">hidemessage</a></td>
-		<td>(關閉訊息框)</td></tr>
+		<td>(關閉訊息框)</td><td>分類未確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="./tags/system.html#loadplugin">loadplugin</a></td>
-		<td>(載入plug-in)</td></tr>
+		<td>(載入plug-in)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="./tags/system.html#mappfont">mappfont</a></td>
-		<td>(載入字型圖檔)</td></tr>
+		<td>(載入字型圖檔)</td><td>實作確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="./tags/system.html#nextskip">nextskip</a></td>
-		<td>(允許啟用『移動到下個選項』)</td></tr>
+		<td>(允許啟用『移動到下個選項』)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="./tags/system.html#quake"><delline>quake</delline></a></td>
-		<td>(畫面晃動)</td></tr>
+		<td>(畫面晃動)</td><td>功能矛盾、刪除</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="./tags/system.html#rclick">rclick</a></td>
-		<td>(右鍵設定)</td></tr>
+		<td>(右鍵設定)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="./tags/system.html#resetwait"><delline>resetwait</delline></a></td>
-		<td>(等待時間初始化)</td></tr>
+		<td>(等待時間初始化)</td><td>功能矛盾、刪除</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="./tags/system.html#s">s</a></td>
-		<td>(停止)</td></tr>
+		<td>(停止)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="./tags/system.html#stopquake"><delline>stopquake</delline></a></td>
-		<td>(停止晃動)</td></tr>
+		<td>(停止晃動)</td><td>功能矛盾、刪除</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="./tags/system.html#title">title</a></td>
-		<td>(設定標題)</td></tr>
+		<td>(設定標題)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="./tags/system.html#wait">wait</a></td>
-		<td>(指定一個等待時間)</td></tr>
+		<td>(指定一個等待時間)</td><td>實作確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="./tags/system.html#waitclick">waitclick</a></td>
-		<td>(點擊等待)</td></tr>
+		<td>(點擊等待)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="./tags/system.html#wc">wc</a></td>
-		<td>(指定一個等待時間，時間長度由文字數量決定)</td></tr>
+		<td>(指定一個等待時間，時間長度由文字數量決定)</td><td>實作確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="./tags/system.html#wq"><delline>wq</delline></a></td>
-		<td>(一個等待時間後結束晃動)</td></tr>
+		<td>(一個等待時間後結束晃動)</td><td>功能矛盾、刪除</td></tr>
 		</tbody>
 	</table>
 </div>
@@ -234,15 +261,16 @@
 </div>
 
 <div class="para">
-	<div class="taggenrehead"><a class="jump" href="./tags/micro.html">巨集操作</a></div>
+	<div class="taggenrehead"><a class="jump" href="./tags/macro.html">巨集操作</a></div>
 	<table class="taglist" summary="巨集操作 標籤列表">
 		<tbody>
+		<tr class="taglisttitle"><td>標籤名稱</td><td>標籤說明</td><td class="tagliststate">版本狀態</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#endmacro">endmacro</a></td>
-		<td>(巨集描述終止)</td></tr>
+		<td>(巨集描述終止)</td><td class="tagliststate">實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#erasemacro">erasemacro</a></td>
-		<td>(移除巨集)</td></tr>
+		<td>(移除巨集)</td><td class="tagliststate">實作確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#macro">macro</a></td>
-		<td>(巨集描述開始)</td></tr>
+		<td>(巨集描述開始)</td><td class="tagliststate">實作確認</td></tr>
 		</tbody>
 	</table>
 </div>
@@ -251,10 +279,11 @@
 	<div class="taggenrehead"><a class="jump" href="./tags/content.html">內容操作</a></div>
 	<table class="taglist" summary="內容操作 標籤列表">
 		<tbody>
+		<tr class="taglisttitle"><td>標籤名稱</td><td>標籤說明</td><td class="tagliststate">版本狀態</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#cancelautomode">cancelautomode</a></td>
-		<td>(解除『自動閱讀』)</td></tr>
+		<td>(解除『自動閱讀』)</td><td>列入系統操作，實做確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#cancelskip">cancelskip</a></td>
-		<td>(解除『跳過』)</td></tr>
+		<td>(解除『跳過』)</td><td>列入系統操作，實做確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#ch">ch</a></td>
 		<td>(顯示字符)</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#cm">cm</a></td>
@@ -268,7 +297,7 @@
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#defstyle">defstyle</a></td>
 		<td>(設定預設樣式屬性)</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#delay">delay</a></td>
-		<td>(文字顯示速度設定)</td></tr>
+		<td>(文字顯示速度設定)</td><td>列入系統操作，實做確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#endindent"><delline>endindent</delline></a></td>
 		<td>(結束縮排)</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#endnowait">endnowait</a></td>
@@ -326,33 +355,34 @@
 </div>
 
 <div class="para">
-	<div class="taggenrehead"><a class="jump" href="./tags/index.html">索引標籤跳躍操作</a></div>
+	<div class="taggenrehead"><a class="jump" href="./tags/index.html">索引操作</a></div>
 	<table class="taglist" summary="索引標籤跳躍操作 標籤列表">
 		<tbody>
+		<tr class="taglisttitle"><td>標籤名稱</td><td>標籤說明</td><td class="tagliststate">版本狀態</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#button">button</a></td>
-		<td>(圖像按鈕)</td></tr>
+		<td>(圖像按鈕)</td><td>分類未確認，列入元件考慮</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#call">call</a></td>
-		<td>(呼叫子場景)</td></tr>
+		<td>(呼叫子場景)</td><td>實作確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#cclick">cclick</a></td>
-		<td>(解除點擊，功能邏輯需檢討)</td></tr>
+		<td>(解除點擊，功能邏輯需檢討)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#click">click</a></td>
-		<td>(點擊跳躍)</td></tr>
+		<td>(點擊跳躍)</td><td>實作確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#ctimeout">ctimeout</a></td>
-		<td>(解除計數器，功能邏輯需檢討)</td></tr>
+		<td>(解除計數器，功能邏輯需檢討)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#cwheel">cwheel</a></td>
-		<td>(解除迴圈等待，功能邏輯需檢討)</td></tr>
+		<td>(解除迴圈等待，功能邏輯需檢討)</td><td>功能重複，需檢討</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#endlink">endlink</a></td>
-		<td>(連結文字結束標籤)</td></tr>
+		<td>(連結文字結束標籤)</td><td>分類未確認，列入元件考慮</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#jump">jump</a></td>
-		<td>(場景跳躍)</td></tr>
+		<td>(場景跳躍)</td><td>實作確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#link">link</a></td>
-		<td>(連結文字起始標籤)</td></tr>
+		<td>(連結文字起始標籤)</td><td>分類未確認，列入元件考慮</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#return">return</a></td>
-		<td>(回到主場景)</td></tr>
+		<td>(回到主場景)</td><td>實作確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#timeout">timeout</a></td>
-		<td>(計數器跳躍)</td></tr>
+		<td>(計數器跳躍)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#wheel">wheel</a></td>
-		<td>(等待跳躍，功能邏輯需檢討)</td></tr>
+		<td>(等待跳躍，功能邏輯需檢討)</td><td>功能重複，需檢討</td></tr>
 		</tbody>
 	</table>
 </div>
@@ -385,34 +415,35 @@
 	<div class="taggenrehead"><a class="jump" href="./tags/logic.html">變數、邏輯操作</a></div>
 	<table class="taglist" summary="音效、背景音樂、影片操作 標籤列表">
 		<tbody>
+		<tr class="taglisttitle"><td>標籤名稱</td><td>標籤說明</td><td class="tagliststate">版本狀態</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#clearvar">clearvar</a></td>
-		<td>(消除所有遊戲變數)</td></tr>
+		<td>(消除所有遊戲變數)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#else">else</a></td>
-		<td>(判斷式為誤起始標籤)</td></tr>
+		<td>(判斷式為誤起始標籤)</td><td>實作確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#elsif">elsif</a></td>
-		<td>(多重判斷式起始標籤)</td></tr>
+		<td>(多重判斷式起始標籤)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#emb">emb</a></td>
-		<td>(箝入遊戲變數)</td></tr>
+		<td>(箝入遊戲變數)</td><td>實作確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#endif">endif</a></td>
-		<td>(判斷式結束標籤)</td></tr>
+		<td>(判斷式結束標籤)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#endignore">endignore</a></td>
-		<td>(忽略式結束標籤)</td></tr>
+		<td>(忽略式結束標籤)</td><td>實作確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#endscript">endscript</a></td>
-		<td>(腳本結束標籤)</td></tr>
+		<td>(腳本結束標籤)</td><td>系統不相容，暫不實做</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#eval">eval</a></td>
-		<td>(設定遊戲變數)</td></tr>
+		<td>(設定遊戲變數)</td><td>實作確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#if">if</a></td>
-		<td>(判斷式起始標籤)</td></tr>
+		<td>(判斷式起始標籤)</td><td>實作確認</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#ignore">ignore</a></td>
-		<td>(忽略式啟始標籤)</td></tr>
+		<td>(忽略式啟始標籤)</td><td>實作確認</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#input">input</a></td>
-		<td>(輸入文字)</td></tr>
+		<td>(輸入文字)</td><td>分類未確認，列入元件考慮</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#iscript">iscript</a></td>
-		<td>(腳本起始標籤)</td></tr>
+		<td>(腳本起始標籤)</td><td>系統不相容，暫不實做</td></tr>
 		<tr class="taglisteven"><td class="taglistlink"><a class="jump" href="#trace">trace</a></td>
-		<td>(變數偵測)</td></tr>
+		<td>(變數偵測)</td><td>分類未確認，列入元件考慮</td></tr>
 		<tr class="taglistodd"><td class="taglistlink"><a class="jump" href="#waittrig">waittrig</a></td>
-		<td>(觸發等待，功能邏輯需檢討)</td></tr>
+		<td>(觸發等待，功能邏輯需檢討)</td><td>呼叫TJS內的事件驅動，等待事件完成後才繼續執行。系統邏輯需確認，需檢討</td></tr>
 		</tbody>
 	</table>
 </div>

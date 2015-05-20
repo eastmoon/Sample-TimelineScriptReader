@@ -13,10 +13,386 @@
 
 <h1><a name="tags" id="tags">變數、邏輯操作標籤</a></h1>
 <div class="para">
-	KAG ( Krikri Adventure Game )標籤文件說明。<br />
-	本專案為KAG文件轉譯，並以此解析KAG，並重建功能於Unity。<br />
-	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/index.html">吉里吉里首頁</a><br />
-	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/Tags.html">KAG標籤列表原文</a><br />
+	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/Var.html">KAG變數說明</a><br />
+	<a href="http://www.ultrasync.net/dee/kr2helps/kag3doc/contents/TJSTips.html">TJS描述式</a>(尚無實做)<br />
+	<a href="https://jurassic.codeplex.com/">Jurassic</a><br />
+	KAG的變數系統是由原生的TJS語言泛生出來的系統，然而基於不同程式語言考量，在此會將無法實現的標籤與操作進行修改或刪除。<br />	
+	考慮符合ECMAScript操作，系統核心引用Jurassic引擎，取代TJS運算；雖然JavaScript語言函數庫繁多，但多於底層套用外部引擎，對此不列入考慮。<br /> 
+	<p>
+	變數清除：
+	<ul>
+		<li><a href="#clearsysvar">clearsysvar</a></br />
+		消除所有系統變數，冠有sf開頭之變數
+		<li><a href="#clearvar">clearvar</a><br />
+		消除所有遊戲變數，冠有f開頭之變數
+	</ul>
+	</p>
+	<p>
+	邏輯條件式：
+	<ul>
+		<li><a href="#if">if</a></br />
+		判斷式起始標籤
+		<li><a href="#elseif">elseif</a><br />
+		多重判斷式
+		<li><a href="#else">else</a><br />
+		其餘判斷
+		<li><a href="#endif">endif</a><br />
+		判斷式結束標籤
+		<li><a href="#ignore">ignore</a><br />
+		忽略式啟始標籤
+		<li><a href="#endignore">endignore</a><br />
+		忽略式結束標籤
+	</ul>
+	</p>
+	<p>
+	描述式操作：
+	<ul>
+		<li><a href="#eval">eval</a></br />
+		寫入描述式
+		<li><a href="#emb">emb</a><br />
+		讀取描述式
+	</ul>
+	</p>
+</div>
+
+
+
+<h1><a name="tags" id="tags">變數說明</a></h1>
+<div class="para">
+	<ol>
+		<li>變數種類：
+		<ul>
+			<li>系統變數<br />
+			<ul>
+				<li>當遊戲關閉、啟動後仍然保存的變數；亦指經正常程序關閉，其變數數值會保存於系統檔內，並於下次啟動時取回其內容。
+				<li>寫法：sf.var，sf為系統變數冠字，var為變數名稱。
+			</ul>
+			<li>遊戲變數<br />
+			<ul>
+				<li>當遊戲經由<a href="../index.html#tag_bookmark">書籤</a>存檔，所有遊戲變數會存入紀錄檔中，並於取回紀錄檔時恢復其內容。
+				<li>寫法：f.var，f為系統變數冠字，var為變數名稱。
+			</ul>
+			<li>暫時變數<br />
+			<ul>
+				<li>遊戲的暫時性變數，該變數不會被儲存，只會存在於遊戲運作的當下。
+				<li>寫法：tf.var，tf為系統變數冠字，var為變數名稱。
+			</ul>
+		</ul>
+		<li>變數規範：
+			變數定名之規範如下
+			<ul>
+				<li>變數為半形英數符號與全形文字組成，外加 _ (下底線)組成。
+				<li>變數開頭不可為數字。
+				<li>必須於前加上變數種類之冠字。
+			</ul>
+			<code class="bq">
+				<span class="weak">合法變數名稱：</span><br />
+				f.flag1  sf.username  sf.playcount  tf.i  f.enokazu  f.final_count  f.變數之1<br />
+				<span class="weak">不合法變數名稱：</span><br />
+				abc&def  a-z
+			</code>
+		<li>變數輸入：
+		<ul>
+			<li>數值<br />
+			<code class="bq">
+				<span class="weak">輸入數值1000到名為var1的遊戲變數中：</span><br />
+				[eval exp="f.var1 = 1000"]
+			</code>
+			<li>字串<br />
+			使用單引號夾住，如：'字串'<br />
+			<code class="bq">
+				<span class="weak">輸入字串test到名為var1的系統變數中：</span><br />
+				[eval exp="sf.var1 = 'test'"]
+			</code>
+			<li>變數<br />
+			<code class="bq">
+				<span class="weak">輸入名為var1的系統變數內容給予名為var1的暫時變數中：</span><br />
+				[eval exp="tf.var1 = sf.var1"]
+			</code>
+		</ul>
+		<li>變數操作：
+		<ul>
+			<li>演算操作<br />
+			加減乘除之運算操作，演算優先順序為『除(/)、乘(*)、加(+)、減(-)』，若要改變優先序可使用"()"。
+			<code class="bq">
+				<span class="weak">將數字1加到名為flag1的遊戲變數中：</span><br />
+				[eval exp="f.flag1 = f.flag1 + 1"]<br />
+				<span class="weak">將遊戲變數flag2乘上flag3後加上flag1，在存入flag1中：</span><br />
+				[eval exp="f.flag1 = f.flag1 + f.flag2 * f.flag3"]<br />
+				<span class="weak">將遊戲變數flag1加上flag2後乘上flag3，在存入flag1中：</span><br />
+				[eval exp="f.flag1 = (f.flag1 + f.flag2) * f.flag3"]<br />
+			</code>
+			<li>邏輯操作<br />
+			基本邏輯操作式，其式會回傳一個布林變數(true|false)；操作描述如下：<br />
+			<code class="bq">
+				a == b，a是否與b相同。<br />
+				a != b，a是否與b不相同。<br />
+				a < b，a是否小於b。<br />
+				a > b，a是否大於b。<br />
+				a <= b，a是否小於等於b。<br />
+				a >= b，a是否大於等於b。<br />
+			</code>
+			邏輯操作式，其回傳運用於<a href="#if">if</a>標籤，用來判斷是否該使用夾住內容。
+			<code class="bq">
+				<span class="weak">若遊戲變數flag1等於2，打上"It is true"：</span><br />
+				[if exp="f.flag1==2"]It is true.[endif]
+			</code>
+			<li>文數字相加<br />
+			若兩變數的內容，一個為字串、一個為數值，則會相加為一新字串。
+			<code class="bq">
+				<span class="weak">例如：</span><br />
+				[eval exp="f.var1 = 'test'"]<br />
+				[eval exp="f.var2 = 20"]<br />
+				[eval exp="f.flag1 = f.flag2 + f.flag2"]<br />
+				[emb exp="f.flag1"]<br />
+				<span class="weak">輸出：</span><br />
+				test20
+			</code>
+		</ul>
+	</ol>
+</div>
+
+<h1><a name="clearsysvar" id="clearsysvar">clearsysvar (消除所有系統變數，冠有sf開頭之變數)</a></h1>
+<div class="para">
+	<div class="tagremarks">
+		消除所有系統變數。<br />
+		系統變數指，變數名稱前冠有sf開頭的變數。
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[eval exp="sf.var=100"]<br />
+	[clearsysvar]<br />
+	[emb exp="sf.var"]<br />
+	<span class="weak"> ↑ 找不到變數，輸出為空白</span><br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="clearvar" id="clearvar">clearvar (消除所有遊戲變數，冠有f開頭之變數)</a></h1>
+<div class="para">
+	<div class="tagremarks">
+		消除所有遊戲變數。<br />
+		遊戲變數指，變數名稱前冠有f開頭的變數。
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[eval exp="f.var=100"]<br />
+	[clearvar]<br />
+	[emb exp="f.var"]<br />
+	<span class="weak"> ↑ 找不到變數，輸出為空白</span><br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="eval" id="eval">eval (寫入描述式)</a></h1>
+<div class="para">
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">exp</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">邏輯描述式</td>
+			<td class="tagattribdesc">需執行的邏輯描述式。</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		執行exp內所填寫的邏輯描述式。<br />
+		通常用於儲存變數或對變數操作。<br />
+		<delline>導入ECMAScript後，可填入任何符合JavaScript規範的邏輯描述式。</delline>
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[eval exp="f.test=500"]<br />
+	<span class="weak"> ↑ 儲存數值500於名為test的遊戲變數內</span><br />
+	[eval exp="f.test='It is text'"]<br />
+	<span class="weak"> ↑ 儲存字串"It is text"於名為test的遊戲變數內</span><br />
+	[eval exp="sf.test=400"]<br />
+	<span class="weak"> ↑ 儲存數值500於名為test的系統變數內</span><br />
+	[eval exp="f.test2=f.test*3"]<br />
+	<span class="weak"> ↑ 將名為test的遊戲變數乘上3後儲存至名為test2的遊戲變數內</span><br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="emb" id="emb">emb (讀取描述式)</a></h1>
+<div class="para">
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">exp</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">邏輯描述式</td>
+			<td class="tagattribdesc">需執行的邏輯描述式。</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		執行exp內所填寫的邏輯描述式，而描述式的結果將以箝入內容。<br />
+		通常用於將變數用於內容裡。<br />
+		用來取代內容的變數資料，來源於<a href="#eval">eval</a>標籤所填入的資料。
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[eval exp="f.value='It is variable'"]<br />
+	f.value = [emb exp="f.value"]<br />
+	<span class="weak">輸出：</span><br />
+	f.value = It is variable<br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="if" id="if">if (判斷式起始標籤)</a></h1>
+<div class="para">
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">exp</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">邏輯描述式</td>
+			<td class="tagattribdesc">需執行的邏輯描述式。描述式需回傳為true|false。</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		條件判斷式，若exp內容為true(或非0之值)，執行後續文章。<br />
+		文章範圍為if到最近的endif、else、esleif標籤。<br />
+		請勿在if到endif範圍內填入<a href="../index.html#tag_bookmark">書籤</a>，避免執行錯誤。
+	</div>
+	使用範例：
+	<ul>
+	<li>基本條件式，if-endif
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[if exp="f.value"]<br />
+	run if sentences.<br />
+	[endif]<br />
+	<span class="weak">若f.value為true，輸出：</span><br />
+	run if sentences.<br />
+	</code></div>
+	
+	<li>正反條件式，if-else-endif
+	<div class="tagexample"><code class="bq">
+	[if exp="f.value"]<br />
+	run if sentences.<br />
+	[else]<br />
+	run esle sentences.<br />
+	[endif]<br />
+	<span class="weak">若f.value為true，輸出：</span><br />
+	run if sentences.<br />
+	<span class="weak">若f.value為false，輸出：</span><br />
+	run esle sentences.<br />
+	</code></div>
+
+	<li>正反條件式，if-elseif-else-endif
+	<div class="tagexample"><code class="bq">
+	[if exp="f.value1"]<br />
+	run if sentences.<br />
+	[elseif exp="f.value2"]<br />
+	run elseif sentences.<br />
+	[else]<br />
+	run esle sentences.<br />
+	[endif]<br />
+	<span class="weak">若f.value1為true，輸出：</span><br />
+	run if sentences.<br />
+	<span class="weak">若f.value2為true，輸出：</span><br />
+	run esleif sentences.<br />
+	<span class="weak">若f.value1與f.value2都為false，輸出：</span><br />
+	run esle sentences.<br />
+	</code></div>
+
+	</ul>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="elseif" id="elseif">elseif (多重判斷式)</a></h1>
+<div class="para">
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">exp</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">邏輯描述式</td>
+			<td class="tagattribdesc">需執行的邏輯描述式。描述式需回傳為true|false。</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		多重判斷式，當if判斷式為false，且exp內容為true(或非0之值)，執行後續文章。<br />
+		文章範圍為elseif到最近的endif、else、esleif標籤。<br />
+		請勿在if到endif範圍內填入<a href="../index.html#tag_bookmark">書籤</a>，避免執行錯誤。<br />
+		elseif範例可參考<a href="#if">if</a>標籤的說明文。<br />
+	</div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="else" id="else">else (其餘判斷)</a></h1>
+<div class="para">
+	
+	<div class="tagremarks">
+		其餘判斷，當if或elseif判斷式為false，執行後續文章。<br />
+		文章範圍為elseif到最近的endif標籤。<br />
+		請勿在if到endif範圍內填入<a href="../index.html#tag_bookmark">書籤</a>，避免執行錯誤。<br />
+		elseif範例可參考<a href="#if">if</a>標籤的說明文。<br />
+	</div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="endif" id="endif">endif (判斷式結束標籤)</a></h1>
+<div class="para">
+	<div class="tagremarks">
+		對稱標籤<a href="#if">if</a>的結尾標籤。<br />	
+		存在此標籤才會正式運作起始標籤<a href="#if">if</a>，若無則會使起始標籤下的內容皆不運作。
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">正確句型：</span><br />
+	[if]...[endif]<br />
+	<span class="weak">錯誤句型：</span><br />
+	[if]...<br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="ignore" id="ignore">ignore (忽略式啟始標籤)</a></h1>
+<div class="para">
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">exp</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">邏輯描述式</td>
+			<td class="tagattribdesc">需執行的邏輯描述式。描述式需回傳為true|false。</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		忽略式，若exp內容為true(或非0之值)，不執行後續文章。<br />
+		文章範圍為ignore到最近的endignore標籤。<br />
+		請勿在ignore到endignore範圍內填入<a href="../index.html#tag_bookmark">書籤</a>，避免執行錯誤。
+	</div>
+
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[ignore exp="f.value"]<br />
+	run ignore sentences.<br />
+	[endignore]<br />
+	<span class="weak">若f.value為false，輸出：</span><br />
+	run if sentences.<br />
+	<span class="weak">若f.value為true，輸出：</span><br />
+	<br />
+	</code></div>
+	
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="endignore" id="endignore">endignore (忽略式結束標籤)</a></h1>
+<div class="para">
+	<div class="tagremarks">
+		對稱標籤<a href="#ignore">ignore</a>的結尾標籤。<br />	
+		存在此標籤才會正式運作起始標籤<a href="#ignore">ignore</a>，若無則會使起始標籤下的內容皆不運作。
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">正確句型：</span><br />
+	[ignore]...[endignore]<br />
+	<span class="weak">錯誤句型：</span><br />
+	[ignore]...<br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
 </div>
 
 </body>

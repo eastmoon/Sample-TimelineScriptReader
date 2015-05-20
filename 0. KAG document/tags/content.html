@@ -19,38 +19,29 @@
 	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/Tags.html">KAG標籤列表原文</a><br />
 </div>
 
-<h1><a name="delay" id="delay">delay (文字顯示速度設定)</a></h1>
+<h1><a name="ch" id="ch">ch (顯示字符)</a></h1>
 <div class="para">
-	<div class="taggenre">內容操作</div>
 	<table class="tagparams" frame="box" rules="all">
 		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
 		<tbody>
-			<tr><td class="tagattribname">speed</td>
+			<tr><td class="tagattribname">text</td>
 			<td class="tagattribrequired">yes</td>
-			<td class="tagattribformat">"nowait" | "user" | 數值(毫秒、ms)</td>
+			<td class="tagattribformat">文字</td>
 			<td class="tagattribdesc">
-			"nowait"，延遲速度為0，每個文字皆不停頓的逐一顯示。<br />
-			<delline>"user"，延遲速度依據[System|文字速度]所設定的預設速度 ( 設定來源 ? )。</delline><br />
-			數值，延遲速度依據設定之毫秒(ms)時間逐一顯示文字。<br />
-			文字顯速度度設定後，其後的所有內容皆受此影響，直到下次改變。
+			顯示於畫面上的文字。<br />
+			可以填入複數字符，但不會自動段行，且指會顯示第一個字符。<br />
 			</td></tr>
 		</tbody>
 	</table>
 	<div class="tagremarks">
-		指定文字顯示時，字符間延遲的速度。<br />
+		顯示字符於<a href="#current">current</a>內容層內。<br />
+		KAG內，通常文字為一個字一個字分解並處理。<br />
 	</div>
 	<div class="tagexample"><code class="bq">
 	<span class="weak">例如：</span><br />
-	[delay speed=1000]<br />
-	xyz<br />
+	[ch text="ABCDE"]<br />
 	<span class="weak">顯示結果：</span><br />
-	<ol>
-		<li>x
-		<li>[延遲1秒]
-		<li>xy
-		<li>[延遲1秒]
-		<li>xyz
-	</ol>
+	A
 	</code></div>
 	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
 </div>

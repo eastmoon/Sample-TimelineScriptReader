@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0068)http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/Tags.html#autowc -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-TW" lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+	<title>巨集操作</title>
+	<meta name="author" content="eastmoon">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<link href="../css/browser.css" type="text/css" rel="stylesheet" title="吉里吉里瀏覽器顯示設定檔">
+	<link href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/index.html" target="_top" rel="Start" title="吉里吉里首頁">
+</head>
+<body>
+
+<h1><a name="tags" id="tags">巨集操作標籤</a></h1>
+<div class="para">
+	<p>
+	腳本巨集功能，撰寫可重複運用的新標籤。<br />
+	巨集是將既有標籤重新組合為新標籤，因此是以基本標籤組合，若要發展新功能仍建議新增基本標籤。
+	<ul>
+		<li><a href="#macro">macro</a></br />
+		巨集描述開始
+		<li><a href="#endmacro">endmacro</a><br />
+		巨集描述終止
+		<li><a href="#erasemacro">erasemacro</a><br />
+		移除巨集
+	</ul>
+	</p>
+</div>
+
+<h1><a name="endmacro" id="endmacro">endmacro (巨集描述終止)</a></h1>
+<div class="para">
+	<div class="tagremarks">
+		對稱標籤<a href="#macro">macro</a>的結尾標籤。<br />	
+		存在此標籤才會正式運作起始標籤<a href="#macro">macro</a>，若無則會使起始標籤下的內容皆不運作。
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">正確句型：</span><br />
+	[macro name="newtag"]...[endmarco]<br />
+	<span class="weak">錯誤句型：</span><br />
+	[macro name="newtag"]...<br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="erasemacro" id="erasemacro">erasemacro (移除巨集)</a></h1>
+<div class="para">
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">name</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">字串</td>
+			<td class="tagattribdesc">欲刪除的標籤名稱。不可消除未經macro註冊過的名稱。</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		將<a href="#macro">macro</a>新增的標籤刪除。<br />
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[macro name="newtag"]...[endmarco]<br />
+	[erasemarco name="newtag"]<br />
+	[newtag]<br />
+	<span class="weak"> ↑ 此句不會執行</span><br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="macro" id="macro">macro (巨集描述開始)</a></h1>
+<div class="para">
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">name</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">字串</td>
+			<td class="tagattribdesc">欲新增的標籤名稱。不可新增已經存在的標籤與系統標籤。</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		巨集描述開始，受此對稱標籤夾住的內容將被定義為新標籤的內容。<br />
+		對稱標籤，若無<a href="#endmacro">endmacro</a>，此標籤下的內容皆不運作。<br />
+		巨集屬性：<br />
+		<ul>
+		<li>"%"，指定巨集屬性為夾住對應的屬性值
+		<li>"%x|y"，指定巨集屬性x為其屬性值，但若x為輸入，則以y為屬性值帶入
+		<li>"*"，巨集屬性皆為夾住標籤的屬性
+		<li>對應可標籤可為複數存在
+		</ul>
+	</div>
+	使用範例：
+	<ul>
+	<li>此範例為巨集命令的基本運作方式。
+	<div class="tagexample"><code class="bq">
+	<span class="weak">巨集設定：</span><br />
+	[macro name="newtag"][font color=0xff0000]It is holle world![resetfonr][endmarco]<br />
+	<span class="weak">巨集使用：</span><br />
+	[newtag]
+	</code></div>
+	<li>此範例為巨集屬性對應標籤屬性值。
+	<div class="tagexample"><code class="bq">
+	<span class="weak">巨集設定：</span><br />
+	[macro name="newtag"][font color=%icolor]It is hello world![resetfonr][endmarco]<br />
+	<span class="weak">巨集使用：</span><br />
+	[newtag icolor=0xff0000]
+	</code></div>
+	<li>此範例為巨集屬性對應標籤屬性，但屬性被省略時，採用預設值。
+	<div class="tagexample"><code class="bq">
+	<span class="weak">巨集設定：</span><br />
+	[macro name="newtag"][font color=%icolor|0x00ff00]It is hello world![resetfonr][endmarco]<br />
+	<span class="weak">巨集使用：</span><br />
+	[newtag]<br />
+	<span class="weak"> ↑ font使用0x00ff00為屬性值</span><br />
+	</code></div>
+	<li>此範例為巨集屬性對應標籤屬性。
+	<div class="tagexample"><code class="bq">
+	<span class="weak">巨集設定：</span><br />
+	[macro name="newtag"][font *]It is hello world![resetfonr][endmarco]<br />
+	<span class="weak">巨集使用：</span><br />
+	[newtag color=0xff0000]
+	</code></div>
+	<li>此範例為巨集屬性對應標籤屬性，對應可為複數存在。
+	<div class="tagexample"><code class="bq">
+	<span class="weak">巨集設定：</span><br />
+	[macro name="newtag"][font *]It is hello world 1![resetfonr][r][font *]It is hello world 2![endmarco]<br />
+	<span class="weak">巨集使用：</span><br />
+	[newtag color=0xff0000]
+	</code></div>
+	</ul>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+</body>
+</html>

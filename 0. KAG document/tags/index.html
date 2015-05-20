@@ -2,7 +2,7 @@
 <!-- saved from url=(0068)http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/Tags.html#autowc -->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-TW" lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <head>
-	<title>索引標籤跳躍操作</title>
+	<title>索引操作</title>
 	<meta name="author" content="eastmoon">
 	<meta http-equiv="Content-Style-Type" content="text/css">
 	<meta http-equiv="Content-Script-Type" content="text/javascript">
@@ -11,12 +11,351 @@
 </head>
 <body>
 
-<h1><a name="tags" id="tags">索引標籤跳躍操作標籤</a></h1>
+<h1><a name="tags" id="tags">索引操作標籤</a></h1>
 <div class="para">
-	KAG ( Krikri Adventure Game )標籤文件說明。<br />
-	本專案為KAG文件轉譯，並以此解析KAG，並重建功能於Unity。<br />
-	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/index.html">吉里吉里首頁</a><br />
-	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/Tags.html">KAG標籤列表原文</a><br />
+	索引標籤操作，利用場景檔案(.KS檔)與其中的索引<a href="../index.html#tag_bookmark">書籤</a>進行內容切換。<br />
+	在考慮製作分支路線時，可以此方式進行內容區分。<br />
+	<p>
+	索引跳躍：<br />
+	移動目前到需要的內容場景。
+	<ul>
+		<li><a href="#call">call</a></br />
+		呼叫子場景
+		<li><a href="#return">return</a><br />
+		回到主場景
+		<li><a href="#jump">jump</a><br />
+		場景跳躍
+	</ul>
+	</p>
+	<p>
+	觸發跳躍：<br />
+	利用點擊(狀態切換)、時間、邏輯三種觸發來進行場景跳躍。<br />
+	<ul>
+		<li><a href="#click">click</a></br />
+		點擊跳躍
+		<li><a href="#cclick">cclick</a><br />
+		解除點擊跳躍
+		<li><a href="#timeout">timeout</a><br />
+		計數器跳躍
+		<li><a href="#ctimeout">ctimeout</a><br />
+		解除計數器跳躍
+	</ul>
+	</p>
+</div>
+
+<h1><a name="call" id="call">call (呼叫子場景)</a></h1>
+<div class="para">
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">storage</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">字串</td>
+			<td class="tagattribdesc">場景檔案名稱(.KS檔)；若省略輸入，以當前載入的檔案為預設值。</td></tr>
+
+			<tr><td class="tagattribname">target</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">字串</td>
+			<td class="tagattribdesc">索引<a href="../index.html#tag_bookmark">書籤</a>名稱；若省略輸入，以當前載入檔案的起始為預設值。</td></tr>
+
+			<tr><td class="tagattribname">countpage</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">true|false(default)</td>
+			<td class="tagattribdesc">移動的場景是否為『已讀』，預設為『未讀』，若要指定為『已讀』則需指定此為true。</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+	執行此標籤時，依據標籤的參數跳躍至指定的位置開始運作。<br />
+	此標籤執行的位置即為呼叫者，若要返回至此，使用<a href="#return">return</a>標籤。<br />
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	100:[newtag][call storage="subroutine.ks" target="index" countpage=true]<br />
+	<span class="weak"> ↑ 執行此句跳躍到subroutine.ks檔中的index書籤位置，表標示此書籤為『已讀』。</span><br />
+	...<br />
+	<span class="weak">subroutine.ks file:</span><br />
+	...<br />
+	10:*index|index info<br />
+	<span class="weak"> ↑ 從上句跳躍至此開始往下執行。</span><br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="return" id="return">return (回到主場景)</a></h1>
+<div class="para">
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">storage</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">字串</td>
+			<td class="tagattribdesc">返回場景的檔案名稱(.KS檔)；若省略輸入，以當前載入的檔案為預設值。</td></tr>
+
+			<tr><td class="tagattribname">target</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">字串</td>
+			<td class="tagattribdesc">返回場景的索引<a href="../index.html#tag_bookmark">書籤</a>名稱；若省略輸入，以當前載入檔案的起始為預設值。</td></tr>
+
+			<tr><td class="tagattribname">countpage</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">true(default)|false</td>
+			<td class="tagattribdesc">移動的場景是否為『已讀』，預設為『已讀』，若要指定為『未讀』則需指定此為false。</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+	執行此標籤時，可以返回上個呼叫者的位置並往下執行。<br />
+	若忽略填寫storage、target，則返回到上個呼叫者位置；若填寫屬性，則跳躍到指定的位置。<br />
+	一但使用<a href="#call">call</a>，則呼叫者的位置會被取代，此是若返回則會回到新的呼叫者位置。<br />
+	</div>
+	使用範例：
+	<ul>
+	<li>返回呼叫者範例：
+	<div class="tagexample"><code class="bq">
+	<span class="weak">main.ks file:：</span><br />
+	100:[call storage="subroutine.ks" target="index"]<br />
+	<span class="weak"> ↑ 執行此句跳躍到subroutine.ks檔中的index標籤位置。</span><br />
+	...<br />
+	<span class="weak">subroutine.ks file:</span><br />
+	10:*index|index info<br />
+	<span class="weak"> ↑ 從上句跳躍至此開始往下執行。</span><br />
+	11:[return]<br />
+	<span class="weak"> ↑ 返回到main.ks檔中的第100行。</span><br />
+	</code></div>
+
+	<li>覆蓋呼叫者範例：
+	<div class="tagexample"><code class="bq">
+	<span class="weak">main.ks file:：</span><br />
+	100:[call storage="subroutine1.ks" target="index"]<br />
+	<span class="weak"> ↑ 跳躍到subroutine1.ks檔中的index標籤位置。</span><br />
+	...<br />
+	<span class="weak">subroutine1.ks file:</span><br />
+	10:*index|index info<br />
+	<span class="weak"> ↑ 從上句跳躍至此開始往下執行。</span><br />
+	11:[call storage="subroutine2.ks" target="index"]<br />
+	<span class="weak"> ↑ 跳躍到subroutine2.ks檔中的index標籤位置。</span><br />
+	...<br />
+	<span class="weak">subroutine2.ks file:</span><br />
+	10:*index|index info<br />
+	<span class="weak"> ↑ 從上句跳躍至此開始往下執行。</span><br />
+	11:[return]<br />
+	<span class="weak"> ↑ subroutine1.ks檔中的第11行。</span><br />
+	</code></div>
+
+	<li>保留單一呼叫者下，跳躍範例：
+	<div class="tagexample"><code class="bq">
+	<span class="weak">main.ks file:：</span><br />
+	100:[call storage="subroutine1.ks" target="index"]<br />
+	<span class="weak"> ↑ 跳躍到subroutine1.ks檔中的index標籤位置。</span><br />
+	...<br />
+	<span class="weak">subroutine1.ks file:</span><br />
+	10:*index|index info<br />
+	<span class="weak"> ↑ 從上句跳躍至此開始往下執行。</span><br />
+	11:[return storage="subroutine2.ks" target="index"]<br />
+	<span class="weak"> ↑ 跳躍到subroutine2.ks檔中的index標籤位置。</span><br />
+	...<br />
+	<span class="weak">subroutine2.ks file:</span><br />
+	10:*index|index info<br />
+	<span class="weak"> ↑ 從上句跳躍至此開始往下執行。</span><br />
+	11:[return]<br />
+	<span class="weak"> ↑ main.ks檔中的第100行。</span><br />
+	</code></div>
+	
+	</ul>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="jump" id="jump">jump (場景跳躍)</a></h1>
+<div class="para">
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">storage</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">字串</td>
+			<td class="tagattribdesc">場景跳躍的檔案名稱(.KS檔)；若省略輸入，以當前載入的檔案為預設值。</td></tr>
+
+			<tr><td class="tagattribname">target</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">字串</td>
+			<td class="tagattribdesc">場景跳躍的索引<a href="../index.html#tag_bookmark">書籤</a>名稱；若省略輸入，以當前載入檔案的起始為預設值。</td></tr>
+
+			<tr><td class="tagattribname">countpage</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">true(default)|false</td>
+			<td class="tagattribdesc">移動的場景是否為『已讀』，預設為『已讀』，若要指定為『未讀』則需指定此為false。</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+	執行此標籤時，依據標籤的參數跳躍至指定的位置開始運作。<br />
+	同為跳躍，其功能與<a href="#call">call</a>與<a href="#return">return</a>相同，若非需要往返的跳躍方式，可使用標籤。
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[jump storage="subroutine.ks" target="index"]<br />
+	<span class="weak"> ↑ 執行此句跳躍到subroutine.ks檔中的index書籤位置。</span><br />
+	...<br />
+	<span class="weak">subroutine.ks file:</span><br />
+	...<br />
+	*index|index info<br />
+	<span class="weak"> ↑ 從上句跳躍至此開始往下執行。</span><br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="click" id="click">click (點擊跳躍)</a></h1>
+<div class="para">
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">storage</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">字串</td>
+			<td class="tagattribdesc">目標場景的檔案名稱(.KS檔)；若省略輸入，以當前載入的檔案為預設值。</td></tr>
+
+			<tr><td class="tagattribname">target</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">字串</td>
+			<td class="tagattribdesc">目標場景的索引<a href="../index.html#tag_bookmark">書籤</a>名稱；若省略輸入，以當前載入檔案的起始為預設值。</td></tr>
+
+			<tr><td class="tagattribname">exp</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">邏輯描述式</td>
+			<td class="tagattribdesc">當點擊觸發時，執行此描述式後才移動至目標場景；若此屬性忽略，則不會執行此描述式。</td></tr>
+
+			<tr><td class="tagattribname"><delline>se</delline></td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat"></td>
+			<td class="tagattribdesc">此參數暫時不考慮。</td></tr>
+
+			<tr><td class="tagattribname"><delline>sebuf</delline></td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat"></td>
+			<td class="tagattribdesc">此參數暫時不考慮。</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+	對系統登記點擊觸發的場景移動。<br />
+	當系統接收到點擊訊號，且此訊號非其他元件產生，則觸發點擊跳躍。<br />
+	如果使用此標籤，未確保沒有其他選項元件導致觸發，請於後使用<a href="system.html#s">s</a>或任何觸發等待點擊的標籤。<br />
+	觸發跳躍登記是唯一的，重複登記會將前個訊號覆蓋。
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[click storage="subroutine.ks" target="index" exp="f.var = f.var1 + f.var2"]<br />
+	<span class="weak"> ↑ 登記一個觸發跳躍訊號。</span><br />
+	[s]<br />
+	<span class="weak"> ↑ 停止解讀，等待觸發訊號。</span><br />
+	<span class="weak"> 假設觸發產生，先執行exp內的邏輯描述式後，跳躍到subroutine.ks檔中的index書籤位置。</span><br />
+	...<br />
+	<span class="weak">subroutine.ks file:</span><br />
+	...<br />
+	*index|index info<br />
+	<span class="weak"> ↑ 從上句跳躍至此開始往下執行。</span><br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="cclick" id="cclick">cclick (解除點擊跳躍)</a></h1>
+<div class="para">
+	<div class="tagremarks">
+	解除當前登記的<a href="#click">click</a>觸發跳躍訊號。<br />
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[click storage="subroutine.ks" target="index" exp="f.var = f.var1 + f.var2"]<br />
+	<span class="weak"> ↑ 登記一個觸發跳躍訊號。</span><br />
+	[s]<br />
+	<span class="weak"> ↑ 停止解讀，等待觸發訊號。</span><br />
+	<span class="weak"> 假設觸發產生，先執行exp內的邏輯描述式後，跳躍到subroutine.ks檔中的index書籤位置。</span><br />
+	...<br />
+	<span class="weak">subroutine.ks file:</span><br />
+	...<br />
+	*index|index info<br />
+	<span class="weak"> ↑ 從上句跳躍至此開始往下執行。</span><br />
+	[cclick]<br />
+	<span class="weak"> ↑ 刪除登記的觸發跳躍。</span><br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="timeout" id="timeout">timeout (計數器跳躍)</a></h1>
+<div class="para">
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">time</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">數值</td>
+			<td class="tagattribdesc">計數器每次觸發的間隔時間(ms、毫秒)。</td></tr>
+
+			<tr><td class="tagattribname">storage</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">字串</td>
+			<td class="tagattribdesc">目標場景的檔案名稱(.KS檔)；若省略輸入，以當前載入的檔案為預設值。</td></tr>
+
+			<tr><td class="tagattribname">target</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">字串</td>
+			<td class="tagattribdesc">目標場景的索引<a href="../index.html#tag_bookmark">書籤</a>名稱；若省略輸入，以當前載入檔案的起始為預設值。</td></tr>
+
+			<tr><td class="tagattribname">exp</td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat">邏輯描述式</td>
+			<td class="tagattribdesc">當點擊觸發時，執行此描述式後才移動至目標場景；若此屬性忽略，則不會執行此描述式。</td></tr>
+
+			<tr><td class="tagattribname"><delline>se</delline></td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat"></td>
+			<td class="tagattribdesc">此參數暫時不考慮。</td></tr>
+
+			<tr><td class="tagattribname"><delline>sebuf</delline></td>
+			<td class="tagattribrequired">no</td>
+			<td class="tagattribformat"></td>
+			<td class="tagattribdesc">此參數暫時不考慮。</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+	對系統登記由計數器觸發的場景移動。<br />
+	計數器跳躍觸發登記時並非開始倒數的時間點，直到執行<a href="system.html#s">s</a>標籤後，計數器開始倒數，當倒數完畢後移動至目標場景。<br />
+	觸發跳躍登記是唯一的，重複登記會將前個訊號覆蓋。
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[timeout time=3000 storage="subroutine.ks" target="index" exp="f.var = f.var1 + f.var2"]<br />
+	<span class="weak"> ↑ 登記一個等待3秒的計數器跳躍訊號。</span><br />
+	[s]<br />
+	<span class="weak"> ↑ 停止解讀，並開始倒數。</span><br />
+	<span class="weak"> 當3秒過後，先執行exp內的邏輯描述式後，跳躍到subroutine.ks檔中的index書籤位置。</span><br />
+	...<br />
+	<span class="weak">subroutine.ks file:</span><br />
+	...<br />
+	*index|index info<br />
+	<span class="weak"> ↑ 從上句跳躍至此開始往下執行。</span><br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="ctimeout" id="ctimeout">ctimeout (解除計數器跳躍)</a></h1>
+<div class="para">
+	<div class="tagremarks">
+	解除當前登記的<a href="#timeout">timeout</a>觸發跳躍訊號。<br />
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[timeout storage="subroutine.ks" target="index" exp="f.var = f.var1 + f.var2"]<br />
+	<span class="weak"> ↑ 登記一個觸發跳躍訊號。</span><br />
+	[s]<br />
+	<span class="weak"> ↑ 停止解讀，等待觸發訊號。</span><br />
+	<span class="weak"> 假設觸發產生，先執行exp內的邏輯描述式後，跳躍到subroutine.ks檔中的index書籤位置。</span><br />
+	...<br />
+	<span class="weak">subroutine.ks file:</span><br />
+	...<br />
+	*index|index info<br />
+	<span class="weak"> ↑ 從上句跳躍至此開始往下執行。</span><br />
+	[ctimeout]<br />
+	<span class="weak"> ↑ 刪除登記的觸發跳躍。</span><br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
 </div>
 
 </body>

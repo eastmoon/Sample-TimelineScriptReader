@@ -13,15 +13,89 @@
 
 <h1><a name="tags" id="tags">系統操作標籤</a></h1>
 <div class="para">
-	KAG ( Krikri Adventure Game )標籤文件說明。<br />
-	本專案為KAG文件轉譯，並以此解析KAG，並重建功能於Unity。<br />
-	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/index.html">吉里吉里首頁</a><br />
-	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/Tags.html">KAG標籤列表原文</a><br />
+	腳本閱讀器系統相關內容，亦是Adventure Game的系統共用操作，在本系統中主要為時間軸管理。<br />
+	<p>
+	等待時間控制：<br />
+	本系統的等待時間是一個基準值，亦指文字與文字中間顯示的時間差。<br />
+	這樣設計是為了使畫面顯示的動態與文字播放對齊，但考量並非所有媒體皆需要對齊，因此各別的動態時間則交由標籤內額外設定。<br />
+	<ul>
+		<li><a href="#delay">delay</a><br />
+		指定字間延遲時間
+		<li><a href="#wait">wait</a><br />
+		指定一個等待時間
+		<li><a href="#waitclick">waitclick</a><br />
+		點擊等待
+		<li><a href="#wc">wc</a><br />
+		指定一個等待時間，時間長度由文字數量決定
+		<li><a href="#autowc">autowc</a><br />
+		自動調整字符顯示速度，時間長度由文字數量決定
+	</ul>
+	</p>
+	<p>
+	閱讀器操作：<br />
+	閱讀器行為操作，動態時間省略、閱讀器操控、閱讀模式(省略點擊等待)。<br />
+	<ul>
+		<li><a href="#s">s</a><br />
+		停止；停止閱讀器
+		<li><a href="#clickskip">clickskip</a><br />
+		允許啟用『跳過』
+		<li><a href="#nextskip">nextskip</a><br />
+		允許啟用『移動到下個選項』；與『跳過』，但直到選項出現才停止『跳過』
+		<li><a href="#cancelskip">cancelskip</a><br />
+		停止『跳過』
+		<li><a href="#automode">automode</a><br />
+		允許啟用『自動閱讀』
+		<li><a href="#cancelautomode">cancelautomode</a><br />
+		停止『自動閱讀』
+	</ul>
+	</p>
+	<p>
+	主系統介面資訊：( 功能確認，尚不需實做 )<br />
+	系統在顯示上所有的共通資訊。<br />
+	<ul>
+		<li><a href="#title">title</a><br />
+		設定標題
+		<li><a href="#cursor">cursor</a><br />
+		變更滑鼠游標
+		<li><a href="#rclick">rclick</a><br />
+		右鍵設定
+	</ul>
+	</p>
+	<p>
+	外部資源載入：( 功能確認，尚不需實做 )<br />
+	系統在顯示上所需要外部提供的資源。<br />
+	<ul>
+		<li><a href="#loadplugin">loadplugin</a><br />
+		載入plug-in
+		<li><a href="#mappfont">mappfont</a><br />
+		載入字型圖檔
+	</ul>
+	</p>
+</div>
+
+<h1><a name="automode" id="automode">automode (允許啟用『自動閱讀』)</a></h1>
+<div class="para">
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">enabled</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">true(Default) | false</td>
+			<td class="tagattribdesc">
+			自動閱讀功能若啟動設為true，不啟動設為false。
+			</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		使用者使用『自動閱讀』功能時，系統是否運行此像運作。<br />
+		自動閱讀為系統功能，此功能目的在讓閱讀器忽略點擊等待，在動態完成時直接顯示後續的內容。<br />
+		停止自動閱讀，請使用<a href="#cancelautomode">cancelautomode</a>
+	</div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
 </div>
 
 <h1><a name="autowc" id="autowc">autowc (自動調整字符顯示速度，時間長度由文字數量決定)</a></h1>
 <div class="para">
-	<div class="taggenre">系統操作</div>
 	<table class="tagparams" frame="box" rules="all">
 		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
 		<tbody>
@@ -53,37 +127,55 @@
 	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
 </div>
 
-<h1><a name="ch" id="ch">ch (顯示字符)</a></h1>
+<h1><a name="cancelautomode" id="cancelautomode">cancelautomode (停止『自動閱讀』)</a></h1>
 <div class="para">
-	<div class="taggenre">系統操作</div>
-	<table class="tagparams" frame="box" rules="all">
-		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
-		<tbody>
-			<tr><td class="tagattribname">text</td>
-			<td class="tagattribrequired">yes</td>
-			<td class="tagattribformat">文字</td>
-			<td class="tagattribdesc">
-			顯示於畫面上的文字。<br />
-			可以填入複數字符，但不會自動段行，且指會顯示第一個字符。<br />
-			</td></tr>
-		</tbody>
-	</table>
 	<div class="tagremarks">
-		顯示字符於<a href="#current">current</a>內容層內。<br />
-		KAG內，通常文字為一個字一個字分解並處理。<br />
+		強制解除『自動閱讀』功能。<br />
+		若後續內容不允許閱讀器使用自動閱讀來瀏覽內容，使用此功能暫停。<br />
+		注意，將<a href="nextskip">automode</a>設為Disabled並不能停止自動『自動閱讀』，只能不再啟用該功能。
 	</div>
 	<div class="tagexample"><code class="bq">
 	<span class="weak">例如：</span><br />
-	[ch text="ABCDE"]<br />
-	<span class="weak">顯示結果：</span><br />
-	A
+	00:[automode enabled=true]<br />
+	<span class="weak"> ↑ 允許自動閱讀</span><br />
+	01:It is content 1.[l][r]<br />
+	<span class="weak"> ↑ 使用者觸發自動閱讀，從01到03行的點擊等待皆忽略</span><br />
+	02:It is content 2.[l][r]<br />
+	03:It is content 3.[l][r]<br />
+	04:[cancelautomode]<br />
+	<span class="weak"> ↑ 停止自動閱讀，從05到06行的點擊等待不被忽略</span><br />
+	05:It is content 4.[l][r]<br />
+	06:It is content 5.[l][r]<br />
 	</code></div>
-	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+	<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="cancelskip" id="cancelskip">cancelskip (停止『跳過』)</a></h1>
+<div class="para">
+	<div class="tagremarks">
+		強制解除『跳過』功能。<br />
+		『跳過』功能是指當文字瀏覽的字間延遲、動態表演、點擊等待時，使用者若不想花費時間，則以點擊為訊號跳過此時間。<br />
+		當前系統只有<a href="nextskip">nextskip</a>的『移動到下個選項』功能才會啟動自動『跳過』，其於標籤為要求等待，因此本功能為解除『移動到下個選項』行為。<br />
+		注意，將<a href="nextskip">nextskip</a>設為Disabled並不能停止自動『跳過』，只能不再啟用該功能。
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	00:[nextskip enabled=true]<br />
+	<span class="weak"> ↑ 允許移動到下個選項</span><br />
+	01:It is content 1.[l][r]<br />
+	<span class="weak"> ↑ 使用者觸發移動到下個選項，從01到03行的點擊等待與延遲皆忽略</span><br />
+	02:It is content 2.[l][r]<br />
+	03:It is content 3.[l][r]<br />
+	04:[cancelskip]<br />
+	<span class="weak"> ↑ 停止自動跳過，從05到06行的點擊等待與延遲不被忽略</span><br />
+	05:It is content 4.[l][r]<br />
+	06:It is content 5.[l][r]<br />
+	</code></div>
+	<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">回標籤列表</span></a></div>
 </div>
 
 <h1><a name="clickskip" id="clickskip">clickskip (允許啟用『跳過』)</a></h1>
 <div class="para">
-	<div class="taggenre">系統操作</div>
 	<table class="tagparams" frame="box" rules="all">
 		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
 		<tbody>
@@ -96,14 +188,13 @@
 		</tbody>
 	</table>
 	<div class="tagremarks">
-		若在文字顯示途中點擊畫面時，可跳過文字顯示動畫並完整顯示內容。<br />
+		點擊跳過，亦指點擊非元件單元時，觸發系統點擊訊號，並以此跳過文字顯示延遲、動態、點擊等待。<br />
 	</div>
 	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
 </div>
 
 <h1><a name="nextskip" id="nextskip">nextskip (允許啟用『移動到下個選項』)</a></h1>
 <div class="para">
-	<div class="taggenre">系統操作</div>
 	<table class="tagparams" frame="box" rules="all">
 		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
 		<tbody>
@@ -118,13 +209,64 @@
 	<div class="tagremarks">
 		使用者使用『移動到下個選項』功能時，系統是否運行此像運作。<br />
 		(20150311 註解) 因為移動為快進功能，因此當啟用此功能，同時也啟用『跳過』。
+		(20150519 註解) 移動到下個選項為系統功能，此功能目的在讓閱讀器忽略一切動態，直到下個選項出現。
 	</div>
 	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
 </div>
 
+
+<h1><a name="delay" id="delay">delay (指定字間延遲時間)</a></h1>
+<div class="para">
+	<table class="tagparams" frame="box" rules="all">
+		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
+		<tbody>
+			<tr><td class="tagattribname">speed</td>
+			<td class="tagattribrequired">yes</td>
+			<td class="tagattribformat">"nowait" | "user" | 數值(毫秒、ms)</td>
+			<td class="tagattribdesc">
+			"nowait"，延遲速度為0，每個文字皆不停頓的逐一顯示。<br />
+			<delline>"user"，延遲速度依據[System|文字速度]所設定的預設速度 ( 設定來源 ? )。</delline><br />
+			數值，延遲速度依據設定之毫秒(ms)時間逐一顯示文字。<br />
+			文字顯速度度設定後，其後的所有內容皆受此影響，直到下次改變。
+			</td></tr>
+		</tbody>
+	</table>
+	<div class="tagremarks">
+		指定文字顯示時，字符間延遲的速度。<br />
+	</div>
+	<div class="tagexample"><code class="bq">
+	<span class="weak">例如：</span><br />
+	[delay speed=1000]<br />
+	xyz<br />
+	<span class="weak">顯示結果：</span><br />
+	<ol>
+		<li>x
+		<li>[延遲1秒]
+		<li>xy
+		<li>[延遲1秒]
+		<li>xyz
+	</ol>
+	</code></div>
+	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+
+<h1><a name="s" id="s">s (停止；停止閱讀器)</a></h1>
+<div class="para">
+	<div class="tagremarks">
+		停止當前閱讀器的解讀運作。<br />
+		下列標籤撰寫時需於後方填寫此標籤，以此確保運作的正確性：<br />
+		<ul>
+			<li><a href="index.html#click">click</a>
+			<li><a href="index.html#timeout">timeout</a>
+			<li>link
+		</ul>
+	</div>
+	<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
 <h1><a name="wait" id="wait">wait (指定一個等待時間)</a></h1>
 <div class="para">
-	<div class="taggenre">系統操作</div>
 	<table class="tagparams" frame="box" rules="all">
 		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
 		<tbody>
@@ -166,7 +308,6 @@
 
 <h1><a name="waitclick" id="waitclick">waitclick (點擊等待)</a></h1>
 <div class="para">
-	<div class="taggenre">系統操作</div>
 	<div class="tagremarks">
 		點擊等待。<br />
 		不同於<a href="#l">l</a>標籤、<a href="#p">p</a>標籤，不接受『跳過』功能，會顯示等待圖示(符號)。
@@ -177,7 +318,6 @@
 
 <h1><a name="wc" id="wc">wc (指定一個等待時間，時間長度由文字數量決定)</a></h1>
 <div class="para">
-	<div class="taggenre">系統操作</div>
 	<table class="tagparams" frame="box" rules="all">
 		<thead><tr><td>屬性</td><td>必須</td><td>數值</td><td>說明</td></tr></thead>
 		<tbody>
@@ -211,6 +351,7 @@
 	</code></div>
 	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
 </div>
+
 
 </body>
 </html>
