@@ -1,0 +1,24 @@
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\bin\Release\Tutorial-ScriptParser.exe.config
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\bin\Release\Tutorial-ScriptParser.exe
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\bin\Release\Tutorial-ScriptParser.pdb
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\obj\Release\TimelineScriptReader_Console.csprojResolveAssemblyReference.cache
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\obj\Release\Tutorial-ScriptParser.exe
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\obj\Release\Tutorial-ScriptParser.pdb
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\TimelineScriptReader_Console\Tutorial-ScriptParser\bin\Release\TimelineScriptReader_Console.exe.config
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\TimelineScriptReader_Console\Tutorial-ScriptParser\obj\Release\TimelineScriptReader_Console.csprojResolveAssemblyReference.cache
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\TimelineScriptReader_Console\Tutorial-ScriptParser\bin\Release\TimelineScriptReader_Console.exe
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\TimelineScriptReader_Console\Tutorial-ScriptParser\bin\Release\TimelineScriptReader_Console.pdb
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\TimelineScriptReader_Console\Tutorial-ScriptParser\obj\Release\TimelineScriptReader_Console.exe
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\TimelineScriptReader_Console\Tutorial-ScriptParser\obj\Release\TimelineScriptReader_Console.pdb
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\TimelineScriptReader_Console\TimelineScriptReader_Console\bin\Release\TimelineScriptReader_Console.exe.config
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\TimelineScriptReader_Console\TimelineScriptReader_Console\obj\Release\TimelineScriptReader_Console.exe
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\TimelineScriptReader_Console\TimelineScriptReader_Console\obj\Release\TimelineScriptReader_Console.pdb
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\bin\Release\TimelineScriptReader_Console.exe.config
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\obj\Release\TimelineScriptReader_Console.exe
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\obj\Release\TimelineScriptReader_Console.pdb
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\bin\Release\TimelineScriptReader_Console.exe
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\bin\Release\TimelineScriptReader_Console.pdb
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\obj\Release\TimelineScriptReader_Console.csprojResolveAssemblyReference.cache
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\bin\Release\Jurassic.dll
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\bin\Release\Jurassic.pdb
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\bin\Release\Jurassic.xml

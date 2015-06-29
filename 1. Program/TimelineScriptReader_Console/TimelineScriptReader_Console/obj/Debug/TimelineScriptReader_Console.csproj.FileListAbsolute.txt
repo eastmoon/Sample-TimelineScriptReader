@@ -1,0 +1,9 @@
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\bin\Debug\TimelineScriptReader_Console.exe.config
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\bin\Debug\TimelineScriptReader_Console.exe
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\bin\Debug\TimelineScriptReader_Console.pdb
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\obj\Debug\TimelineScriptReader_Console.exe
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\obj\Debug\TimelineScriptReader_Console.pdb
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\obj\Debug\TimelineScriptReader_Console.csprojResolveAssemblyReference.cache
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\bin\Debug\Jurassic.dll
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\bin\Debug\Jurassic.pdb
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\TimelineScriptReader\TimelineScriptReader_Console\TimelineScriptReader_Console\bin\Debug\Jurassic.xml

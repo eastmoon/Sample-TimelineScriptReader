@@ -1,0 +1,6 @@
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\bin\Debug\Tutorial-ScriptParser.exe.config
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\bin\Debug\Tutorial-ScriptParser.exe
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\bin\Debug\Tutorial-ScriptParser.pdb
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\obj\Debug\Tutorial-ScriptParser.csprojResolveAssemblyReference.cache
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\obj\Debug\Tutorial-ScriptParser.exe
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\obj\Debug\Tutorial-ScriptParser.pdb

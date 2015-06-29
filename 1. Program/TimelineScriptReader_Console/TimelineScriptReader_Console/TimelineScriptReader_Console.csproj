@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A9881591-5EC9-4A75-A7BF-6C7FA72654E4}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TimelineScriptReader</RootNamespace>
+    <AssemblyName>TimelineScriptReader_Console</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Jurassic">
+      <HintPath>..\..\..\..\1. Import library\Jurassic\Jurassic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimelineScriptReader\DataStruct\ScriptTrigger.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Modules\BookmarkModule.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Modules\JavaScriptModule.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Modules\TimerModule.cs" />
+    <Compile Include="TimelineScriptReader\KAG\ReaderCommand\SDQueuePage.cs" />
+    <Compile Include="TimelineScriptReader\KAG\ReaderCommand\SDJump.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Index\IndexOperateCall.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Index\IndexOperateCancelClickJump.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Index\IndexOperateCancelTimeoutJump.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Index\IndexOperateClickJump.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Index\IndexOperateJump.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Index\IndexOperateReturn.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Index\IndexOperateTimeoutJump.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\KAGPairsTag.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Logic\ConditionOperateIf.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Logic\ConditionOperateIgnore.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Logic\ExpressionOperateEmbed.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Logic\ExpressionOperateEvaluation.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Logic\VariableOperateClearGameVar.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Logic\VariableOperateClearSystemVar.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Macro\MacroOperateErase.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Macro\MacroOperate.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\System\TimelineOperateWaitCharacterAmount.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\System\TimelineOperateWait.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\System\ReaderOperateCancelAutomode.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\System\ReaderOperateCancelAutoskip.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\System\ReaderOperateEnabledAutomode.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\System\ReaderOperateEnabledAutoskip.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\System\ReaderOperateEnabledClickSkip.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\System\ReaderOperateStop.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\System\ReaderOperateStartAutomode.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\System\ReaderOperateStartAutoskip.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\System\TimelineOperateDelay.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\System\TimelineOperateWaitclick.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Trigger\ClickJumpTrigger.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Trigger\TimeoutJumpTrigger.cs" />
+    <Compile Include="TimelineScriptReader\DataStruct\ScriptModule.cs" />
+    <Compile Include="TimelineScriptReader\DataStruct\IPageReader.cs" />
+    <Compile Include="TimelineScriptReader\DataStruct\IScriptData.cs" />
+    <Compile Include="TimelineScriptReader\KAG\KAGReader.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Modules\ConsoleModule.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Content\Cm.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Content\Content.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Content\L.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Tags\Content\R.cs" />
+    <Compile Include="TimelineScriptReader\MarkupStruct\ITag.cs" />
+    <Compile Include="TimelineScriptReader\KAG\Parser.cs" />
+    <Compile Include="TimelineScriptReader\MarkupStruct\PairsTag.cs" />
+    <Compile Include="TimelineScriptReader\MarkupStruct\TagContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TimelineScriptReader\MarkupStruct\PreprocessTag.cs" />
+    <Compile Include="TimelineScriptReader\KAG\ReaderCommand\SDCommand.cs" />
+    <Compile Include="TimelineScriptReader\KAG\ReaderCommand\SDContent.cs" />
+    <Compile Include="TimelineScriptReader\KAG\ReaderCommand\SDPage.cs" />
+    <Compile Include="TimelineScriptReader\DataStruct\ScriptData.cs" />
+    <Compile Include="TimelineScriptReader\ScriptReader.cs" />
+    <Compile Include="TimelineScriptReader\MarkupStruct\Tag.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TimelineScriptReader\KAG\Components\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

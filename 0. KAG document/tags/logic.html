@@ -14,10 +14,10 @@
 <h1><a name="tags" id="tags">變數、邏輯操作標籤</a></h1>
 <div class="para">
 	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/Var.html">KAG變數說明</a><br />
-	<a href="http://www.ultrasync.net/dee/kr2helps/kag3doc/contents/TJSTips.html">TJS描述式</a>(尚無實做)<br />
+	<a href="http://www.ultrasync.net/dee/kr2helps/kag3doc/contents/TJSTips.html">TJS描述式</a>(以JavaScript函數庫取代TJS)<br />
 	<a href="https://jurassic.codeplex.com/">Jurassic</a><br />
 	KAG的變數系統是由原生的TJS語言泛生出來的系統，然而基於不同程式語言考量，在此會將無法實現的標籤與操作進行修改或刪除。<br />	
-	考慮符合ECMAScript操作，系統核心引用Jurassic引擎，取代TJS運算；雖然JavaScript語言函數庫繁多，但多於底層套用外部引擎，對此不列入考慮。<br /> 
+	考慮符合ECMAScript操作，系統核心引用Jurassic引擎，取代TJS運算；雖然JavaScript語言函數庫繁多，但若底層套用外部引擎(如Google V8等)，對此不列入考慮。<br /> 
 	<p>
 	變數清除：
 	<ul>
@@ -77,6 +77,7 @@
 				<li>遊戲的暫時性變數，該變數不會被儲存，只會存在於遊戲運作的當下。
 				<li>寫法：tf.var，tf為系統變數冠字，var為變數名稱。
 			</ul>
+			<li>變數宣告<br />注意，在符合JavaScript規範下，上述變數形式為物件內變數，這些變數結構會影響存檔的儲存方式；若不考慮此，可使用JavaScript的變數宣告方式使用變數。
 		</ul>
 		<li>變數規範：
 			變數定名之規範如下
@@ -198,7 +199,7 @@
 	<div class="tagremarks">
 		執行exp內所填寫的邏輯描述式。<br />
 		通常用於儲存變數或對變數操作。<br />
-		<delline>導入ECMAScript後，可填入任何符合JavaScript規範的邏輯描述式。</delline>
+		可填入任何符合JavaScript規範的邏輯描述式。<br />
 	</div>
 	<div class="tagexample"><code class="bq">
 	<span class="weak">例如：</span><br />
@@ -254,7 +255,8 @@
 	<div class="tagremarks">
 		條件判斷式，若exp內容為true(或非0之值)，執行後續文章。<br />
 		文章範圍為if到最近的endif、else、esleif標籤。<br />
-		請勿在if到endif範圍內填入<a href="../index.html#tag_bookmark">書籤</a>，避免執行錯誤。
+		請勿在if-endif範圍內填入<a href="../index.html#tag_bookmark">書籤</a>，避免執行錯誤。<br />
+		if-endif範圍內，再次出現if，視為巢式結構；此時優先只行外層，將內層if-endif視為一般句型處理。
 	</div>
 	使用範例：
 	<ul>
@@ -298,6 +300,20 @@
 	run esle sentences.<br />
 	</code></div>
 
+	<li>巢式條件式，if-elseif-else-endif
+	<div class="tagexample"><code class="bq">
+	[if exp="f.value1"]<br />
+	run if sentences.<br />
+	[if exp="f.value2"]<br />
+	run nested if sentences.<br />
+	[endif]<br />
+	[endif]<br />
+	<span class="weak">若f.value1為true，f.value2為false，輸出：</span><br />
+	run if sentences.<br />
+	<span class="weak">若f.value1為true，f.value2為true，輸出：</span><br />
+	run if sentences.<br />
+	run nested if sentences.<br />
+	</code></div>
 	</ul>
 	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
 </div>
@@ -363,7 +379,8 @@
 	<div class="tagremarks">
 		忽略式，若exp內容為true(或非0之值)，不執行後續文章。<br />
 		文章範圍為ignore到最近的endignore標籤。<br />
-		請勿在ignore到endignore範圍內填入<a href="../index.html#tag_bookmark">書籤</a>，避免執行錯誤。
+		請勿在ignore-endignore範圍內填入<a href="../index.html#tag_bookmark">書籤</a>，避免執行錯誤。<br />
+		ignore-endignore範圍內，再次出現ignore，視為巢式結構；此時優先只行外層，將內層ignore-endignore視為一般句型處理。
 	</div>
 
 	<div class="tagexample"><code class="bq">
@@ -372,7 +389,7 @@
 	run ignore sentences.<br />
 	[endignore]<br />
 	<span class="weak">若f.value為false，輸出：</span><br />
-	run if sentences.<br />
+	run ignore sentences.<br />
 	<span class="weak">若f.value為true，輸出：</span><br />
 	<br />
 	</code></div>

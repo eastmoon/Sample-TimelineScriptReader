@@ -37,6 +37,10 @@
 	<ul>
 		<li><a href="#s">s</a><br />
 		停止；停止閱讀器
+		<li><a href="#startautoskip">startautoskip</a><br />
+		啟動『自動跳過』
+		<li><a href="#startautomode">startautomode</a><br />
+		啟動『自動閱讀』
 		<li><a href="#clickskip">clickskip</a><br />
 		允許啟用『跳過』
 		<li><a href="#nextskip">nextskip</a><br />
@@ -87,7 +91,7 @@
 		</tbody>
 	</table>
 	<div class="tagremarks">
-		使用者使用『自動閱讀』功能時，系統是否運行此像運作。<br />
+		使用者使用『自動閱讀』功能時，系統是否運行此項運作。<br />
 		自動閱讀為系統功能，此功能目的在讓閱讀器忽略點擊等待，在動態完成時直接顯示後續的內容。<br />
 		停止自動閱讀，請使用<a href="#cancelautomode">cancelautomode</a>
 	</div>
@@ -132,7 +136,7 @@
 	<div class="tagremarks">
 		強制解除『自動閱讀』功能。<br />
 		若後續內容不允許閱讀器使用自動閱讀來瀏覽內容，使用此功能暫停。<br />
-		注意，將<a href="nextskip">automode</a>設為Disabled並不能停止自動『自動閱讀』，只能不再啟用該功能。
+		注意，將<a href="#automode">automode</a>設為Disabled並不能停止自動『自動閱讀』，只能不再啟用該功能。
 	</div>
 	<div class="tagexample"><code class="bq">
 	<span class="weak">例如：</span><br />
@@ -155,8 +159,8 @@
 	<div class="tagremarks">
 		強制解除『跳過』功能。<br />
 		『跳過』功能是指當文字瀏覽的字間延遲、動態表演、點擊等待時，使用者若不想花費時間，則以點擊為訊號跳過此時間。<br />
-		當前系統只有<a href="nextskip">nextskip</a>的『移動到下個選項』功能才會啟動自動『跳過』，其於標籤為要求等待，因此本功能為解除『移動到下個選項』行為。<br />
-		注意，將<a href="nextskip">nextskip</a>設為Disabled並不能停止自動『跳過』，只能不再啟用該功能。
+		當前系統只有<a href="#nextskip">nextskip</a>的『移動到下個選項』功能才會啟動自動『跳過』，其於標籤為要求等待，因此本功能為解除『移動到下個選項』行為。<br />
+		注意，將<a href="#nextskip">nextskip</a>設為Disabled並不能停止自動『跳過』，只能不再啟用該功能。
 	</div>
 	<div class="tagexample"><code class="bq">
 	<span class="weak">例如：</span><br />
@@ -207,9 +211,11 @@
 		</tbody>
 	</table>
 	<div class="tagremarks">
-		使用者使用『移動到下個選項』功能時，系統是否運行此像運作。<br />
-		(20150311 註解) 因為移動為快進功能，因此當啟用此功能，同時也啟用『跳過』。
-		(20150519 註解) 移動到下個選項為系統功能，此功能目的在讓閱讀器忽略一切動態，直到下個選項出現。
+		使用者使用『移動到下個選項』功能時，系統是否運行此項運作。<br />
+		(20150311 註解) 因為移動為快進功能，因此當啟用此功能，同時也啟用『跳過』。<br />
+		(20150519 註解) 移動到下個選項為系統功能，此功能目的在讓閱讀器忽略一切動態，直到下個選項出現。<br />
+		(20150603 註解) 對於『跳過』可分為單次和多次兩種，若為單次，則依據每次等待使用者點擊觸發，並依據<a href="#clickskip">clickskip</a>來允許啟動，若是自動則以<a href="#startautoskip">startautoskip</a>來觸發。<br />
+		由於上述設計，對此nextskip本質就是允許是否可『自動跳過』，但是否檢察選項出現，此部分暫時不考慮。
 	</div>
 	<div class="toindex"><a class="jump" href="../index.html#genre"><span class="toindexanchor">回標籤列表</span></a></div>
 </div>
@@ -255,12 +261,30 @@
 <div class="para">
 	<div class="tagremarks">
 		停止當前閱讀器的解讀運作。<br />
-		下列標籤撰寫時需於後方填寫此標籤，以此確保運作的正確性：<br />
+		下列標籤將設定觸發功能，若使用此標籤，則會啟動觸發功能：<br />
 		<ul>
 			<li><a href="index.html#click">click</a>
 			<li><a href="index.html#timeout">timeout</a>
 			<li>link
 		</ul>
+	</div>
+	<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="startautoskip" id="startautoskip">startautoskip (啟動『自動跳過』)</a></h1>
+<div class="para">
+	<div class="tagremarks">
+		開啟『自動跳過』功能。<br />
+		停止自動跳過，請使用<a href="#cancelskip">cancelskip</a>
+	</div>
+	<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">回標籤列表</span></a></div>
+</div>
+
+<h1><a name="startautomode" id="startautomode">startautomode (啟動『自動閱讀』)</a></h1>
+<div class="para">
+	<div class="tagremarks">
+		開啟『自動閱讀』功能。<br />
+		停止自動跳過，請使用<a href="#cancelautomode">cancelautomode</a>
 	</div>
 	<div class="toindex"><a class="jump" href="#genre"><span class="toindexanchor">回標籤列表</span></a></div>
 </div>

@@ -1,0 +1,8 @@
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\bin\Release\Tutorial-ScriptParser.exe.config
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\bin\Release\Tutorial-ScriptParser.exe
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\bin\Release\Tutorial-ScriptParser.pdb
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\obj\Release\Tutorial-ScriptParser.exe
+C:\Users\EastMoon\Google 雲端硬碟\GameRuleArchiture\CSharp\0. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\obj\Release\Tutorial-ScriptParser.pdb
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\bin\Release\Tutorial-ScriptParser.exe.config
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\obj\Release\Tutorial-ScriptParser.exe
+D:\GameRuleArchiture\source\Sample-TimelineScriptReader\1. Program\Tutorial-ScriptParser\Tutorial-ScriptParser\obj\Release\Tutorial-ScriptParser.pdb

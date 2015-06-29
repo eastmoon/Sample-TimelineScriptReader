@@ -14,7 +14,7 @@
 <h1><a name="tags" id="tags">吉里吉里標籤</a></h1>
 <div class="para">
 	KAG ( Krikri Adventure Game )標籤文件說明。<br />
-	本專案為KAG文件轉譯，並以此解析KAG，並重建功能於Unity。<br />
+	本專案為KAG文件轉譯，以此解析KAG，並重建功能於Unity。<br />
 	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/index.html">吉里吉里首頁</a><br />
 	<a href="http://devdoc.kikyou.info/tvp/docs/kag3doc/contents/Tags.html">KAG標籤列表原文</a><br />
 	<a href="http://kibitz2550.blogspot.tw/2011/06/blog-post.html">KAG標籤列表，中文介紹：NOCBOL ~本店營業中~</a><br />
@@ -75,9 +75,9 @@
 		[playbgm loop](loop default is true)<br />
 		[playbgm loop=true]<br />
 	</code>
-	<li>等號兩測不可為空白
+	<li>等號兩測請勿空白
 	<code class="bq">
-		<span class="weak">以下句型為指定錯誤，loop會指定為預設值</span><br />
+		<span class="weak">以下句型容易產生解讀錯誤</span><br />
 		[playbgm loop = true]<br />
 		[playbgm loop =true]<br />
 		[playbgm loop= true]<br />
@@ -104,7 +104,7 @@
 	<li>單行的開頭必須為“@”記號
 	<li>一個命令佔據一行，單一行中不可存有複數命令
 	<code class="bq">
-		<span class="weak">以下句型同意</span><br />
+		<span class="weak">以下句型同義</span><br />
 		[trans time=0 rule=trans vague=1]<br />
 		@trans time=0 rule=trans vague=1<br />
 	</code>
@@ -149,7 +149,8 @@
 	<ol>
 	<li>“*”為半形英數符號
 	<li>單行的開頭必須為“*”記號
-	<li>書籤名稱、書籤註解皆有繼承，若不填寫則會以上個保有的資料為標籤或註解。
+	<li>書籤主要作用於索引、書籤記錄、歷史記錄等操作
+	<li>書籤名稱、書籤註解皆有繼承，若不填寫則會以上個保有的資料為標籤或註解
 	<li>書籤名稱的繼承會在其後增加自動增量數字以做分歧
 	<code class="bq">
 		<span class="weak">例如：</span><br />
